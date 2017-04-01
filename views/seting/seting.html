@@ -1,0 +1,32 @@
+<ion-view view-title="设置">
+	<ion-content>
+		<ion-list>
+			<ion-item class="item-divider">
+				Units
+			</ion-item>
+			<div class="item item-icon-right">
+				asdas 
+				<i class="icon ion-checkmark"></i>
+			</div>
+			<div class="item item-divider">
+				asdasdasd
+				<span class="badge badge-assertive">{{settings.days-1}}</span>
+			</div>
+			<div class="item range">
+				2
+				<input type="range" name="volume" min="2" max="8" ng-model="settings.days"/>
+				8
+			</div>
+			<div class="item item-button-right">
+				Favorites
+				<button ng-click="isDone = !isDone" class="button button-positive">{{isDone ? 'Done' : 'Edit'}}</button>
+			</div>
+		</ion-list>
+		<ion-list show-delete="isDone">
+			<ion-item ng-repeat="location in locations">
+			   <ion-delete-button class="ion-minus-circled" ng-click="remove(location)"></ion-delete-button>
+				{{location.titleId}}
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

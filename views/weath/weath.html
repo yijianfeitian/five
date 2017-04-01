@@ -1,0 +1,63 @@
+<ion-view view-title="{{addres}}">
+	<ion-nav-buttons side="left">
+		<button class="button button-clear" menu-toggle="left">
+			<i class="icon ion-navicon"></i>
+		</button>
+	</ion-nav-buttons>	
+	
+	<ion-nav-buttons side="right">
+		<button class="button button-clear" menu-toggle="left" ng-click="showAction()" menu-close>
+			<i class="icon ion-more"></i>
+		</button>
+	</ion-nav-buttons>		
+   				
+	<ion-content>
+		<ion-scroll paging="true" ng-style="{height:getHeight()}">
+			<div>
+				<div class="page pageone" ng-style="{height:getHeight()}">
+					<div class="bar bar-dark">
+						<h2 class="title">天气详情</h2>
+					</div>
+					<div class="has-header">
+						<h3>{{weaths.currently.temperature | number:0}}&deg;</h3>
+						<h3 class="secondary-icon" ng-class="weaths.currently.icon | icons"></h3>
+						<p>{{weaths.currently.summary}}</p>
+						<p>Height:{{weaths.daily.data[0].temperatureMax | number:0}}&deg;
+							Low:{{weaths.daily.data[0].temperatureMin | number:0}}&deg;
+							Feels Like:{{weaths.currently.apparentTemperature | number:0}}&deg;</p>
+						<p>Wind:{{weaths.currently.windSpeed | number:0}} </p>
+					</div>
+				</div>
+				<div class="page" ng-style="{height:getHeight()}">
+					<div class="bar bar-dark">
+						<h2 class="title">一周天气指南</h2>
+					</div>
+					<div class="has-header header-two">
+						<p class="padding">{{weaths.daily.summary}}</p>
+						<div class="row" id="rows" ng-repeat="day in weaths.daily.data | limitTo:settings.days">
+			            	<div class="col col-50">{{day.time + '000' | date:'EEEE'}}</div>
+				            <div class="col">
+				              <span class="icon" ng-class="day.icon | icons"></span>
+				              <sup>{{day.precipProbability}}</sup>
+				            </div>
+				            <div class="col">{{day.temperatureMax | number:0}}&deg;</div>
+				            <div class="col">{{day.temperatureMin | number:0}}&deg;</div>
+			            </div>
+					</div>
+				</div>
+				<div class="page" ng-style="{height:getHeight()}">
+					<div class="bar bar-dark">
+						<h2 class="title">天气详情</h2>
+					</div>
+					<div class="list has-header">
+			           <!--<div class="item">Sunrise: {{weaths.daily.data[0].sunriseTime | timezone:weaths.timezone}}</div>
+			           <div class="item">Sunset: {{weaths.daily.data[0].sunsetTime | timezone:weaths.timezone}}</div>
+			           <div class="item">Visibility: {{weaths.currently.visibility}}</div>
+			           <div class="item">Humidity: {{weaths.currently.humidity * 100}}%</div>-->
+			        </div>
+				</div>
+			</div>
+		</ion-scroll>
+		<p>{{weaths}}</p>
+	</ion-content>
+</ion-view>
